@@ -133,6 +133,9 @@ input[type="button"]{
   cursor: pointer;
   transition: all 300ms;
 }
+.btn-search:hover{
+  background: rgb(0, 255, 242) ;
+}
 
 .peli-item .edit:hover{
   background: green;
@@ -141,7 +144,9 @@ input[type="button"]{
 .peli-item .delete:hover{
   background: red;
 }
-
+.edit,.delete{
+  margin: 10px;
+}
 /*ESTILOS BARRA LATERAL*/
 
 .lateral{
