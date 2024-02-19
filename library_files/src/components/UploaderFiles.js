@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { SaveStorage } from '../helpers/saveStorage';
 
-export const UploaderFiles = () => {
+export const UploaderFiles = ({setListState}) => {
   const titleComponent = 'Add Movie';
   const [movieState, setMovieState] = useState({
     title: "",
@@ -20,18 +21,10 @@ export const UploaderFiles = () => {
       description
     };
     setMovieState(movie);
-    saveStorage(movie);
-    console.log(movieState);
-  }
-    const saveStorage = movie =>{
-      let elements = JSON.parse(localStorage.getItem('movies'));
-        if(Array.isArray(elements)){
-          elements.push(movie);
-        }else{
-          elements = [movie];
-        }
-        localStorage.setItem('movies', JSON.stringify(elements));
-        return movie;
+    setListState(elements=>{
+      return [...elements, movie];
+    })
+    SaveStorage("movies",movie);
   }
   return (
     <>

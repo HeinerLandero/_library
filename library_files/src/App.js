@@ -2,7 +2,10 @@ import './App.css';
 import { ListMovies } from './components/ListMovies';
 import { SearchFiles } from './components/SearchFiles';
 import { UploaderFiles } from './components/UploaderFiles';
+import { useState } from 'react';
+
 function App() {
+  const [listState, setListState] = useState([]);
   return (
     
     <div className="layout">
@@ -27,13 +30,13 @@ function App() {
 
         {/* Movie list */}
         <section id="content" className="content">
-          <ListMovies/>
+          <ListMovies listState={listState} setListState={setListState} />
         </section>
 
           {/* aside */}
         <aside className="lateral">
             <SearchFiles/>
-            <UploaderFiles/>
+            <UploaderFiles setListState={setListState}/>
         </aside>
 
         {/* Footer */}
