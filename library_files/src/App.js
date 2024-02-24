@@ -35,7 +35,7 @@ function App() {
 
           {/* aside */}
         <aside className="lateral">
-            <SearchFiles/>
+            <SearchFiles setListState={setListState} listState={listState}/>
             <UploaderFiles setListState={setListState}/>
         </aside>
 

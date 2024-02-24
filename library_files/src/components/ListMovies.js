@@ -10,11 +10,9 @@ export const ListMovies = ({listState, setListState}) => {
         console.log(movies);
         return movies;
     }
-    
-        useEffect(()=>{
-            console.log('componente cargado');
-            getMovies()
-        },[]);
+        useEffect(() => {
+            getMovies();// eslint-disable-next-line
+        }, [ ]);
     
     const deleteMovie = (id)=>{
         let movie_strored = getMovies();
@@ -37,7 +35,11 @@ export const ListMovies = ({listState, setListState}) => {
                 <button className="edit" onClick={()=>setEdit(movie.id)}>Edit</button>
                 <button className="delete" onClick={()=> deleteMovie(movie.id) }>Delete</button>
                 {edit === movie.id &&(
-                    <Edit/>
+                    <Edit movie={movie}
+                            getMovies={getMovies}
+                            setEdit={setEdit}
+                            setListState={setListState}
+                            />
                 )}
             </article>);
       }):
