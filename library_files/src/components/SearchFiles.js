@@ -4,6 +4,7 @@ export const SearchFiles = ({listState, setListState}) => {
     const title = "Search Engine";
     const text_btn = "Search"; 
     let [search, setSearch] = useState("");
+    let [noFind, setNoFind] = useState(false);
 
     const searchMovies = (e) =>{
         setSearch(e.target.value);
@@ -13,6 +14,9 @@ export const SearchFiles = ({listState, setListState}) => {
         })
         if(search.length <= 1 || moviesSearched <= 0 ){
             moviesSearched = JSON.parse(localStorage.getItem("movies"));
+            setNoFind(true);
+        }else{
+            setNoFind(false);
         }
         console.log(moviesSearched);
         setListState(moviesSearched);
@@ -20,7 +24,10 @@ export const SearchFiles = ({listState, setListState}) => {
   return (
     <>
         <div className="search">
-            <h3 className="title">{title}:{search}</h3>
+            <h3 className ="title">{title}:{search}</h3>
+            {(noFind === true && search.length > 1 ) && (
+                <span className='no_match'> there is no match </span>
+            )}
             <form>
                 <input  type="text"
                         name="title_search"
